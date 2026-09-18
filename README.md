@@ -2,14 +2,55 @@
 
 Research prototype for **Wè Northern / Wobé** (`wob`) ↔ French neural MT.
 
+## What this project is about
+
+This project investigates and implements a practical Wobé ↔ French translation
+system for Côte d'Ivoire. It begins with verse-aligned Wobé and French New
+Testament text, then expands toward a useful everyday-language system through
+native-speaker verified conversational, educational, health, market, farming,
+and administrative data.
+
+The repository contains:
+
+- an evidence-led feasibility and resource report;
+- locally stored Wobé–French parallel, monolingual, audio, lexical, and
+  related-Kru-language research resources;
+- reproducible data preparation, training, translation, and evaluation tools;
+- multi-GPU training support for the `server9` A6000 host.
+
 ## Status
 
 | Item | State |
 |------|--------|
 | Parallel NT corpus | **7,927** verse pairs (aligned) |
-| Recommended deployable model | MADLAD-400 3B full fine-tune on 8×A6000 |
+| Best current training method | MADLAD-400 3B with LoRA adapters on 2×A6000 |
 | Domain | Biblical only (for now) |
 | Rights | Wobé text © 2010 Wycliffe — research use; get license before publish |
+
+## Current experimental result
+
+The model is a **research prototype, not a deployable translator**. Evaluation
+uses a strict book-disjoint test: entire Biblical books are withheld from
+training, avoiding adjacent-verse leakage.
+
+| Model | Direction | Held-out verses | BLEU | chrF++ | Interpretation |
+|------|-----------|----------------:|-----:|-------:|----------------|
+| MADLAD-400 3B, full fine-tune | French → Wobé | 678 | 0.05 | 5.39 | Collapsed/repetitive output; do not use |
+| MADLAD-400 3B, full fine-tune | Wobé → French | 678 | 3.18 | 17.45 | Poor baseline; do not use |
+| MADLAD-400 3B, LoRA | French → Wobé | 678 | 7.25 | 28.13 | Promising partial output; not reliable |
+| MADLAD-400 3B, LoRA | Wobé → French | 678 | 9.09 | 25.93 | Promising partial output; not reliable |
+
+The LoRA run avoids the severe repetition seen in full fine-tuning, but it
+still changes meanings. Do not use it for health, legal, education, religious,
+or other consequential translations without Wobé-speaker review.
+
+## Next milestone
+
+Collect **25,000–50,000** clean, native-speaker verified non-Bible French ↔
+Wobé pairs. Start with a 1,000-sentence everyday prompt set and record Wobé
+audio alongside each verified translation. Keep this data separate from the
+Bible corpus, create a held-out everyday test set, then retrain and report
+Bible-domain and everyday-domain scores separately.
 
 ## Setup
 

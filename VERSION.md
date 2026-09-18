@@ -6,6 +6,10 @@
 - Added a LoRA and early-stopping MADLAD training path plus repetition-aware evaluation after the first full fine-tuning baseline collapsed on the book-disjoint test.
 - Switched the tailnet DNS upstream from a Family filter to adult-only filtering after Family restrictions blocked YouTube videos.
 
+## 2026-09-19
+
+- Updated the project README with its purpose, strict held-out baseline results, current LoRA status, and the verified non-Bible data collection milestone.
+
 ## 2026-08-11
 
 - Corrected NLLB target-language routing, added a restricted-data training acknowledgement, and introduced a reproducible book-disjoint Bible evaluation split.
