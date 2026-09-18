@@ -1,3 +1,13 @@
+---
+pretty_name: ASJP Wobé Wordlist
+language:
+- wob
+license: cc-by-4.0
+tags:
+- low-resource-languages
+- lexicon
+---
+
 # Open Wobé lexicon leads
 
 ## ASJP Wobé wordlist
