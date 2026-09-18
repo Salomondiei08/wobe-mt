@@ -1,0 +1,27 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+models/
+results/
+data/hf_dataset/
+# Restricted or third-party source material: keep local until redistribution
+# and ML-training permissions are documented.
+data/wobe_bible/
+data/aligned/
+data/related/
+data/audio_catalog/
+data/sil/
+data/french_bible/
+data/english_bible/
+data/metadata/
+*.log
+.cache/
+
+.env
+.env.*
+*.pem
+
+# Internal report and unrelated local operations configuration.
+WOBE_MT_RESEARCH_REPORT.md
+ops/
